@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        footer {
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: 1;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background-color: #b64726;
+            padding: 10px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .menu-icon {
+            padding: 10px 20px;
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            font-size: medium;
+            padding: 10px 50px;
+            color: white;
+            text-align: right;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover::after {
+            left: 0;
+            width: 100%;
+        }
+
+        .border-dot {
+            border-bottom: 2px dotted white;
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-top: 100px;
+            /* Adjust this value as needed */
+        }
+
+        .contact-heading h1 {
+            animation: slideIn 1s ease forwards;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 50px;
+            /* Adjust this value as needed */
+        }
+
+        .contact-info p {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .contact-form {
+            padding-top: 600px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .contact-form input,
+        .contact-form textarea {
+            font-family: 'Montserrat', sans-serif;
+            width: 50%;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form .contact-form textarea {
+            resize: none;
+        }
+
+        #messageForm {
+            font-family: 'Montserrat', sans-serif;
+            width: 50%;
+            height: 150px;
+            /* Adjust the height as needed */
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #333;
+            /* Set background color to white */
+            color: white;
+            /* Change text color to black */
+            border: 1px solid #ccc;
+            /* Add border */
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            display: block;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #b64726;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #a83f1d;
+        }
+
+        .menu-icon {
+            display: none;
+        }
+
+        @media (max-width: 1200px) {
+            .menu-icon {
+                padding: 10px 20px;
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .border-dot {
+                border-bottom: 2px dotted white;
+            }
+        }
+
+        .dropdown {
+            display: none;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            /* Take the whole width */
+            background-color: #b64726;
+            /* Same as the header background color */
+            color: white;
+            /* White text color */
+            padding: 5px 20px;
+            /* Padding for content */
+            z-index: 999;
+            /* Ensure the dropdown is above other elements */
+        }
+
+        .dropdown-content ul {
+            list-style-type: none;
+            /* Remove default bullet points */
+            padding: 0;
+            /* Remove default padding */
+        }
+
+        .dropdown-content a {
+            text-decoration: none;
+            /* Remove underline from links */
+            color: white;
+            /* White text color for links */
+            display: block;
+            padding: 10px 0;
+            /* Adjust padding for links */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #a83f1d;
+            /* Darker background color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="Images/Logo.webp" alt="Patiala House" style="flex: 1; max-width: 15em; padding-left: 20px;">
+        <script>
+            function toggleMenu() {
+                var subMenu = document.getElementById("subMenu");
+                var menuButton = document.getElementById("menuButton");
+                if (subMenu.style.display === "block") {
+                    subMenu.style.display = "none";
+                    menuButton.textContent = "MENU"; // Change text back to "MENU"
+                } else {
+                    subMenu.style.display = "block";
+                    menuButton.innerHTML = "&#10006;"; // Change to the cross symbol
+                }
+            }
+        </script>
+        <div class="menu-icon" onclick="toggleMenu()" id="menuButton">MENU</div>
+        <nav id="navMenu">
+            <a href="index.html">Our Services</a>
+            <a href="AboutUs.html" >About Us</a>
+        </nav>
+        <div class="dropdown-content" id="subMenu" style="display: none;">
+            <hr>
+            <ul class="big">
+                <li><a href="index.html" aria-current="page">Our Services</a></li>
+                <li><a href="AboutUs.html" >About Us</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="contact-heading">
+            <h1>We want to hear your story.</h1>
+        </div>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i><a href="mailto:patialahouseentertainments@gmail.com" style="color: white;">patialahouseentertainments@gmail.com</a></p>
+           <!-- <p><i class="fas fa-phone"></i><a href="tel:+9134567890" style="color: white;">+9134567890</a></p>-->
+            <p><i class="fas fa-map-marker-alt"></i><a href="geo:latitude,longitude?q=Your%20Address%20Goes%20Here" style="color: white;"> Address </a></p>            
+        </div>
+        <div class="contact-form">
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+            <input type="email" placeholder="Email (Required)">
+            <textarea id="messageForm" placeholder="Message (Required)"></textarea>
+            <button>Send</button>
+        </div>
+    </main>
+    <footer id="footer">
+        <div class="border-dot"></div>
+        <p style="color: white; font-size: large;">© 2024 Patiala House Entertainment. All rights reserved.</p>
+        <a href="PrivacyPolicy.html" style="font-size: large;color:white;">Privacy Policy</a>
+    </footer>
+</body>
+
+</html>

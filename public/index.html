@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patiala House official website</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 200vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      background-color: #b64726;
+      padding: 10px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .menu-icon {
+      display: none;
+      cursor: pointer;
+    }
+
+    .menu-icon div {
+      width: 35px;
+      height: 5px;
+      background-color: white;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      font-size: medium;
+      padding: 10px 50px;
+      color: white;
+      text-align: right;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover::after {
+      left: 0;
+      width: 100%;
+    }
+
+    .text-container {
+      padding-top: 200px;
+      position: absolute;
+      display: none;
+      top: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .animated-text {
+      list-style: none;
+      padding: 0;
+    }
+
+    .animated-text li {
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s, transform 0.5s;
+      color: white;
+      /* Change text color to white */
+    }
+
+    .animated-text li.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animated-text li:nth-child(odd) {
+      animation: slideRight 1s ease forwards;
+    }
+
+    .animated-text li:nth-child(even) {
+      animation: slideLeft 1s ease forwards;
+    }
+
+    @keyframes slideRight {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideLeft {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .animated-text li:hover {
+      color: #b64726;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: auto; /* Push footer to the bottom */
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      z-index: 1;
+    }
+
+    #Modelcontainer {
+      width: 100%;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .arrow-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      background: none;
+      border: none;
+      font-size: 10vh;
+      cursor: pointer;
+      z-index: 1;
+      transition: transform 0.3s;
+    }
+
+    .arrow-button:hover {
+      color: #b64726;
+      transition: transform 0.5s ease;
+      transform: translateX(-50%) scale(1.5);
+    }
+
+
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 47.5%;
+      transform: translate(-50%, -50%);
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid white;
+      border-radius: 25%;
+      width: 3vw;
+      height: 3vw;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .border-dot {
+      border-bottom: 2px dotted white;
+    }
+
+    .menu-icon {
+      display: none;
+    }
+
+    .dropdown {
+      display: none;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #b64726;
+      color: white;
+      padding: 5px 20px;
+      z-index: 999;
+    }
+
+    .dropdown-content ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .dropdown-content a {
+      text-decoration: none;
+      color: white;
+      display: block;
+      padding: 10px 0;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #a83f1d;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .menu-icon {
+        padding: 10px 20px;
+        display: block;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="Images/Logo.webp" alt="Patiala House" style="flex: 1; max-width: 15em; padding-left: 20px;">
+    <script>
+      function toggleMenu() {
+        var subMenu = document.getElementById("subMenu");
+        var menuButton = document.getElementById("menuButton");
+        if (subMenu.style.display === "block") {
+          subMenu.style.display = "none";
+          menuButton.textContent = "MENU"; // Change text back to "MENU"
+        } else {
+          subMenu.style.display = "block";
+          menuButton.innerHTML = "&#10006;"; // Change to the cross symbol
+        }
+      }
+    </script>
+    <div class="menu-icon" onclick="toggleMenu()" id="menuButton">MENU</div>
+    <nav id="navMenu">
+      <a href="AboutUs.html">About Us</a>
+      <a href="ContactUs.html" id="contact-link">Contact Us</a>
+    </nav>
+    <div class="dropdown-content" id="subMenu" style="display: none;">
+      <hr>
+        <a href="AboutUs.html">About Us</a></li>
+        <a href="ContactUs.html" id="contact-linkPhone">Contact Us</a>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <div id="Modelcontainer">
+      <div class="loader"></div>
+    </div>
+    <button class="arrow-button" id="arrowButton">&#8595;</button>
+    <div class="text-container">
+      <ul class="animated-text" style="list-style: none; padding: 0; font-size: 20px;">
+        <li style="font-size: 30px;">Our Services</li>
+        <br>
+        <li>Feature Films</li>
+        <li>Videos</li>
+        <li>Tv commercial/ads</li>
+        <li>Digital ads</li>
+        <li>Corporate Films</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="border-dot"></div>
+    <p style="color: white; font-size: large;">© 2024 Patiala House Entertainment. All rights reserved.</p>
+    <a href="PrivacyPolicy.html" style="font-size: large;color:white;">Privacy Policy</a>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="src/ModelLoader.js" type="module"></script>
+  <script src="src/Services.js" type="module"></script>
+</body>
+
+</html>
